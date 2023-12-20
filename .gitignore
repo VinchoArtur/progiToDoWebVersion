@@ -27,3 +27,4 @@ yarn-error.log*
 /.idea/modules.xml
 /.idea/progitodowebversion.iml
 /.idea/vcs.xml
+/qodana.yaml
