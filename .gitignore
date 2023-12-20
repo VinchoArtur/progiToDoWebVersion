@@ -21,3 +21,9 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+/dist/
+./idea
+/.idea/jsLibraryMappings.xml
+/.idea/modules.xml
+/.idea/progitodowebversion.iml
+/.idea/vcs.xml
