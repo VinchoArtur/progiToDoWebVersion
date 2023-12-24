@@ -14,7 +14,7 @@ const AuthModalComponent: React.FC<AuthModalProps> = ({ open, onClose, onApply }
     const [isFormValid, setIsFormValid] = useState(false);
 
     useEffect(() => {
-        setIsFormValid(!!name && !!password)
+        setIsFormValid(!!name && !!password);
     }, [name, password]);
 
     useEffect(() => {
@@ -28,7 +28,8 @@ const AuthModalComponent: React.FC<AuthModalProps> = ({ open, onClose, onApply }
     const handleApply = () => {
         onApply(name, password);
         onClose();
-    }
+    };
+
     return (
         <Modal
             open={open}
@@ -36,31 +37,32 @@ const AuthModalComponent: React.FC<AuthModalProps> = ({ open, onClose, onApply }
             aria-labelledby="child-modal-title"
             aria-describedby="child-modal-description"
         >
-            <Box className='container'>
-                <TextField
-                    required
-                    id="outlined-required"
-                    label="Name"
-                    defaultValue="Name"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                />
-                <TextField
-                    required
-                    id="outlined-password-input"
-                    label="Password"
-                    type="password"
-                    value={password}
-                    autoComplete="current-password"
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <div className='bottom_button'>
-                    <Button onClick={handleApply} variant="contained" disabled={!isFormValid}>Apply</Button>
-                    <Button onClick={onClose} variant="outlined">Close</Button>
-                </div>
-            </Box>
+            <form onSubmit={(e) => { e.preventDefault(); handleApply(); }}>
+                <Box className='container'>
+                    <TextField
+                        required
+                        id="outlined-required"
+                        label="Name"
+                        defaultValue="Name"
+                        onBlur={(e) => setName(e.target.value)}
+                    />
+                    <TextField
+                        required
+                        id="outlined-password-input"
+                        label="Password"
+                        type="password"
+                        value={password}
+                        autoComplete="current-password"
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <div className='bottom_button'>
+                        <Button type="submit" variant="contained" disabled={!isFormValid}>Apply</Button>
+                        <Button onClick={onClose} variant="outlined">Close</Button>
+                    </div>
+                </Box>
+            </form>
         </Modal>
     );
-}
+};
 
 export default AuthModalComponent;
